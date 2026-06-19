@@ -1,5 +1,4 @@
 import { useReducer, useState } from "react";
-import InputField from "./InputField";
 
 const initialState = {
     username: "",
@@ -8,39 +7,6 @@ const initialState = {
     error: "",
 };
 
-// function reducer(state, action) {
-//     switch (action.type) {
-//         case "SET_FIELD":
-//             return {
-//                 ...state,
-//                 [action.field]: action.value,
-//             };
-
-//         case "LOGIN_START":
-//             return {
-//                 ...state,
-//                 loading: true,
-//                 error: "",
-//             };
-
-//         case "LOGIN_SUCCESS":
-//             return {
-//                 ...state,
-//                 loading: false,
-//             };
-
-//         case "LOGIN_ERROR":
-//             return {
-//                 ...state,
-//                 loading: false,
-//                 error: action.payload,
-//             };
-
-//         default:
-//             return state;
-//     }
-
-// }
 
 function authReducer(state, action) {
   switch (action.type) {
@@ -118,8 +84,8 @@ export default function Login() {
 
     return (
         <form onSubmit={handleSubmit} className="flex items-center justify-center">
-        <div className="bg-white rounded-xl shadow-md p-4 login-form">
-            <button className="text-red-500 hover:text-red-700 close-icon" onClick={() => setShow(false)}>
+        <div className="bg-black rounded-xl p-4 login-form">
+            <button className="text-red-500 hover:text-red-700 close-icon text-right mb-2" onClick={() => setShow(false)}>
                 ❌
             </button>
             <br />
@@ -132,7 +98,7 @@ export default function Login() {
             />
 
             <input
-                className=" text-sm bg-white border border-gray-300 rounded-md py-2 px-4 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className=" text-sm bg-white border border-gray-300 rounded py-2 px-4 mb-2 mx-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Password"
                 name="password"
                 type="password"
@@ -140,7 +106,7 @@ export default function Login() {
                 onChange={handleChange}
             />
 
-            <button type="submit"  disabled={state.loading} className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold">
+            <button type="submit" disabled={state.loading} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold">
                  {state.loading
           ? "Logging In..."
           : "Login"}
