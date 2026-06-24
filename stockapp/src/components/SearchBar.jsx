@@ -40,7 +40,7 @@ function SearchBar() {
 
   return (
 
-    <div className="search-bar w-1/2 border-blue-700 rounded-lg border-2 px-4 py-2">
+    <div className="search-bar w-1/2 border-blue-700 rounded-lg border-2 px-4 py-1">
       <input
         placeholder="Search month..."
         value={search}

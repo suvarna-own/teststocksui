@@ -8,7 +8,7 @@ function ProfileDropdown() {
         <img
           src={ProfileImg}
           alt="profile"
-          className="w-10 h-10 rounded-full"
+          className="w-5 h-5 rounded-full"
         />
       </Dropdown.Toggle>
 

@@ -13,6 +13,13 @@ import CompanyTableData from './components/CompanyTableData';
 import Basket from './components/Basket';
 import Buy from './components/Buy';
 import Funds from './components/Funds';
+import About from './components/Header/About';
+import Contact from './components/Header/Contact';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 
 function Placeholder({ title }) {
   return <div className="tab-page-placeholder">{title}</div>;
@@ -34,8 +41,11 @@ function App() {
           <Route path="bids" element={<Placeholder title="Bids" />} />
           <Route path="funds" element={<Funds />} />
           <Route path="basket" element={<Basket />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
-         
+
+
 
         {/* <Route path="*" element={<Login />} /> */}
       </Routes>

@@ -9,7 +9,9 @@ function WatchList() {
     const [error, setError] = useState(null)
     const [lastUpdateAt, setLastUpdateAt] = useState(null)
     const addToWatchlist = (stock) => {
+        
         setAddWatchlist((prev) => {
+            
             const exists = prev.find((item) => item.symbol === stock.symbol);
             if (exists) return prev;
             return [...prev, stock];
@@ -17,6 +19,7 @@ function WatchList() {
     };
 
     const removeFromwatchlist = (symbol) => {
+        
         setAddWatchlist((prev) => prev.filter((item) => item.symbol !== symbol));
     };
     useEffect(() => {
@@ -139,7 +142,7 @@ function WatchList() {
                 <header className="stock-header">
                     <div>
                         <h1>WatchList Data</h1>
-                        <p>Streaming data from <code>http://localhost:8000/watchlist</code></p>
+                        {/* <p>Streaming data from <code>http://localhost:8000/watchlist</code></p> */}
                     </div>
 
 

@@ -29,7 +29,7 @@ function Basket() {
                 </tbody>
             </table> */}
             <main className="w-full bg-blue-50">
-                <div className="w-full  px-4 mx-auto py-24">
+                <div className="w-full  px-4 mx-auto py-3">
 
                     <div className="flex flex-col break-words w-full mb-6 shadow-lg rounded bg-white">
                         <header className="rounded-t mb-0 px-4 py-3 border-0">

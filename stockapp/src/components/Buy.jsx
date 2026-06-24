@@ -136,12 +136,12 @@ export default function Buy() {
             <div class="relative font-inter antialiased">
 
                 <main class="relative min-h-screen flex flex-col  bg-slate-50 overflow-hidden">
-                    <div class="w-full max-w mx-auto px-4 md:px-5 py-24">
+                    <div class="w-full max-w mx-auto px-4 md:px-5 py-3">
                         <div class="flex justify-center">
 
                             <div class="w-full max-w bg-white shadow-xl rounded-2xl">
                                 <header class="px-4 py-3 border-b border-slate-200">
-                                    <h2 class="font-semibold text-slate-900">My Wallet</h2>
+                                    <h3 class="font-semibold text-slate-900">My Wallet</h3>
                                 </header>
                                 <div class="p-3">
 

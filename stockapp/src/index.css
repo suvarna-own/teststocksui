@@ -1,20 +1,29 @@
 @import "tailwindcss";
 @import '@coreui/coreui/dist/css/coreui.min.css';
 
+
+
 *{
   outline: none;
+  font-size: 1rem;
 }
 .mainWrapper{
   display: flex;
 }
 
 .maincontainer{
-  width: 80%;
-  padding-left:100px ;
+  width: 90%;
+  
 }
-/* .sidebar{
-  width:100px;
-} */
+.sidebar{
+     --cui-sidebar-width:10rem;
+     height:100vh;
+}
+@media (min-width: 700px) {
+    .h1, h1 {
+        font-size: 1rem !important;
+    }
+}
 .login-form{
   position: relative;
   /* sk */
@@ -41,7 +50,11 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+ 
 }
+/* .sidebar-nav .nav-link {
+    font-size: 21px !important;
+} */
 
 /* The sidepanel links */
 .sidepanel a {

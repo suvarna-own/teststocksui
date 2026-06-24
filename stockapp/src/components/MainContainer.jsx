@@ -14,7 +14,7 @@ export default function MainContainer() {
     <div className='mainWrapper flex'>
        
        <Sidebar />
-      <div className="flex-1 px-7 font-semibold text-2xl maincontainer">
+      <div className="flex-1 px-4 font-semibold text-2xl maincontainer">
        
         <Header />
         <Navbar />
