@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 export default function Header() {
     return (
         <header className="bg-white shadow-sm">
-            <div className="flex items-center justify-between px-2 py-2">
-                <Typography variant="h5" component="h5">
+            <div className="flex items-center justify-between px-2 py-2  text-orange-600">
+                <Typography variant="h5" component="h5" className='font-bold'>
                     Stock Trading App
                 </Typography>
                 <>

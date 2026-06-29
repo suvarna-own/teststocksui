@@ -19,6 +19,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { Navigate } from 'react-router-dom';
+import AddFundsForm from './components/Funds/AddFundsForm';
 
 
 function Placeholder({ title }) {
@@ -26,12 +28,13 @@ function Placeholder({ title }) {
 }
 
 function App() {
+  const isLoggedIn = true;
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
 
-        <Route path="/dashboard" element={<MainContainer />}>
+        <Route path="/dashboard" element={isLoggedIn ? <MainContainer /> : <Navigate to="/login" />}>
           <Route index element={<Dashboard />} />
           <Route path="company" element={<CompanyTableData />} />
           <Route path="buy" element={<Buy />} />
@@ -44,9 +47,6 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>
-
-
-
         {/* <Route path="*" element={<Login />} /> */}
       </Routes>
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import axios from "axios";
 
 export default function Buy() {
     const [watchlist, setWatchlist] = useState([])
@@ -17,6 +18,63 @@ export default function Buy() {
     const removeFromwatchlist = (symbol) => {
         setAddWatchlist((prev) => prev.filter((item) => item.symbol !== symbol));
     };
+    //  console.log(watchlist);
+    // const handleBuy = async (stock) => {
+    //     try {
+    //         const response = await fetch("http://localhost:5000/buy", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(stock)
+    //         });
+
+    //         const result = await response.json();
+
+    //         alert(result.message);
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+    // const handleBuy = async (stock) => {
+    //     // e.preventDefault();
+
+    //     await axios.post(
+    //         "http://localhost:5000/buy",
+    //         stock
+    //  
+    //    );
+    //    const handleBuy = async (stock) => {
+    //     try {
+    //         // Replace with '/api/buy' if using Vite proxy, 
+    //         // or 'http://localhost:5000/buy' if CORS is fixed on backend
+    //         const response = await axios.post('http://localhost:5000/buy', {
+    //            stock, // Sending the array of objects in the request body
+    //         });
+
+    //         alert('Data saved successfully!');
+    //         console.log('Server Response:', response.data);
+    //     } catch (error) {
+    //         console.error('Error saving data:', error);
+    //         alert('Failed to save data. Check console for CORS or network errors.');
+    //     }
+
+
+    // };
+    const handleBuy = async (stock) => {
+        try {
+            const response = await axios.post("http://localhost:5000/buy", 
+               stock)
+            }
+
+           
+         catch (err) {
+            console.error(err);
+        }
+    };
+
+
     useEffect(() => {
         const defaultWs = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/api/stocks`
         const defaultHttp = `${window.location.protocol}//${window.location.host}/api/stocks`
@@ -133,58 +191,58 @@ export default function Buy() {
 
     return (
         <>
-            <div class="relative font-inter antialiased">
+            <div className="relative font-inter antialiased">
 
-                <main class="relative min-h-screen flex flex-col  bg-slate-50 overflow-hidden">
-                    <div class="w-full max-w mx-auto px-4 md:px-5 py-3">
-                        <div class="flex justify-center">
+                <main className="relative min-h-screen flex flex-col  bg-slate-50 overflow-hidden">
+                    <div className="w-full max-w mx-auto px-2 py-3">
+                        <div className="flex justify-center">
 
-                            <div class="w-full max-w bg-white shadow-xl rounded-2xl">
-                                <header class="px-4 py-3 border-b border-slate-200">
-                                    <h3 class="font-semibold text-slate-900">My Wallet</h3>
+                            <div className="w-full max-w bg-white shadow-xl rounded-2xl">
+                                <header className="px-4 py-3 border-b border-slate-200">
+                                    <h3 className="font-semibold text-slate-900">My Wallet</h3>
                                 </header>
-                                <div class="p-3">
+                                <div className="p-3">
 
-                                    <div class="overflow-x-auto">
-                                        <table class=" table table-auto w-full table-striped">
-                                            <thead class="text-[13px] text-slate-500/70">
+                                    <div className="overflow-x-auto">
+                                        <table className=" table table-auto w-full table-striped">
+                                            <thead className="text-[13px] text-slate-500/70">
                                                 <tr>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Symbol</th>
                                                     </th>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Name</th>
                                                     </th>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Price</th>
                                                     </th>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Change</th>
                                                     </th>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Change%</th>                                                    </th>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Volume</th>                                                    </th>
-                                                    <th class="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
+                                                    <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
                                                         <th>Market Cap</th>                                                    </th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {watchlist.map((stock) => {
-                                                    const changeClass = stock.change > 0 ? 'positive' : stock.change < 0 ? 'negative' : ''
-                                                    const percentClass = stock.change_percent > 0 ? 'positive' : stock.change_percent < 0 ? 'negative' : ''
+                                                    const changeclassName = stock.change > 0 ? 'positive' : stock.change < 0 ? 'negative' : ''
+                                                    const percentclassName = stock.change_percent > 0 ? 'positive' : stock.change_percent < 0 ? 'negative' : ''
                                                     return (
                                                         <tr key={stock.symbol}>
                                                             <td>{stock.symbol}</td>
                                                             <td>{stock.name}</td>
                                                             <td>${stock.price?.toFixed(2)}</td>
-                                                            <td className={changeClass}>{stock.change?.toFixed(2)}</td>
-                                                            <td className={percentClass}>{stock.change_percent?.toFixed(2)}%</td>
+                                                            <td className={changeclassName}>{stock.change?.toFixed(2)}</td>
+                                                            <td className={percentclassName}>{stock.change_percent?.toFixed(2)}%</td>
                                                             <td>{stock.volume != null ? stock.volume.toLocaleString() : '-'}</td>
                                                             <td>{stock.market_cap != null ? `${stock.market_cap.toFixed(2)}B` : '-'}</td>
-                                                            <td className="px-5 py-3  border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                                <button className="bg-blue-500  hover:bg-blue-700 text-white py-2 px-4 rounded-5">
+                                                            <td className="px-5 py-2  border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
+                                                                <button className="bg-blue-500  hover:bg-blue-700 text-white py-2 px-4 rounded-5" onClick={() => handleBuy(stock)}>
                                                                     Sell / Buy
                                                                 </button>
                                                             </td>
@@ -193,46 +251,6 @@ export default function Buy() {
                                                 })}
                                             </tbody>
 
-                                            {/* <tbody class="text-sm font-medium">
-
-                                                <tr>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-slate-500">1</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="flex items-center">
-                                                            <svg class="shrink-0 mr-2 sm:mr-3" width="36" height="36" viewBox="0 0 36 36">
-                                                                <circle cx="18" cy="18" r="18" fill="#FFA037" />
-                                                                <path fill="#fff" d="M24.563 16.236c.282-1.891-1.157-2.908-3.127-3.586l.64-2.562-1.56-.389-.622 2.495c-.41-.103-.831-.199-1.25-.294l.627-2.511L17.71 9l-.638 2.561c-.34-.077-.673-.153-.996-.234l.002-.008-2.15-.537-.416 1.666s1.157.265 1.133.281c.631.158.746.576.727.907l-.728 2.92c.044.01.1.026.162.051-.052-.013-.107-.027-.165-.04l-1.02 4.088c-.077.192-.273.48-.714.37.016.023-1.134-.282-1.134-.282L11 22.528l2.03.506c.377.095.747.194 1.112.287l-.646 2.591 1.558.389.639-2.564c.426.116.839.222 1.243.323l-.637 2.551 1.56.389.645-2.587c2.66.504 4.659.3 5.5-2.105.679-1.936-.033-3.053-1.432-3.782 1.019-.235 1.787-.905 1.991-2.29Zm-3.564 4.997c-.482 1.936-3.742.89-4.8.627l.857-3.433c1.057.264 4.447.786 3.943 2.806Zm.483-5.025c-.44 1.762-3.154.867-4.034.647l.776-3.113c.88.219 3.716.629 3.258 2.466Z" />
-                                                            </svg>
-                                                            <div class="text-slate-900">Bitcoin</div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-slate-500">BTC</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-slate-900">$67,177.77</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-slate-900">19,672,925</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-emerald-500">0.7%</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-emerald-500">1.34%</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <div class="text-red-500">-5.42%</div>
-                                                    </td>
-                                                    <td class="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                                                        <button class="h-8 whitespace-nowrap justify-center rounded-full px-3 py-1 text-sm font-medium text-indigo-500 hover:text-white border border-slate-200 shadow-sm hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors group">
-                                                            Sell <span class="text-slate-200 group-hover:text-indigo-400 transition-colors">/</span> Buy
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody> */}
                                         </table>
 
                                     </div>

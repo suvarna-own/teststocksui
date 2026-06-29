@@ -15,7 +15,7 @@ const Sidebar = () => {
   return (
     <CSidebar className="border-end h-dvh">
       <CSidebarNav className="h-dvh">
-        <CNavItem>
+        <CNavItem className="text-600">
           <NavLink
             to="/dashboard"
             className="nav-link"

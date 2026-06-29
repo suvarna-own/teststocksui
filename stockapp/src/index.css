@@ -7,17 +7,21 @@
   outline: none;
   font-size: 1rem;
 }
-.mainWrapper{
+/* .mainWrapper{
   display: flex;
-}
+} */
 
 .maincontainer{
-  width: 90%;
+  border-left:2px solid gray;
   
 }
 .sidebar{
-     --cui-sidebar-width:10rem;
+     --cui-sidebar-width:13rem;
      height:100vh;
+     background: #5599f1;
+}
+.dropdown-item, .dropdown-item span{
+  font-size: 0.7rem;
 }
 @media (min-width: 700px) {
     .h1, h1 {
@@ -36,7 +40,7 @@
   right: 10px;
 }
 .table-striped>tbody>tr:nth-of-type(odd)>* {
-  --bs-table-striped-bg: #eec8ed; /* Your custom color */
+  --bs-table-striped-bg: #b8b7ef; /* Your custom color */
 }
 /* sidebar css */
 .sidepanel {

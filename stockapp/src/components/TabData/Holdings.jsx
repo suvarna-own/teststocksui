@@ -1,6 +1,3 @@
-// export default function Holdings() {
-    
-// }
 import React, { useState } from 'react';
 
 export default function Holdings() {

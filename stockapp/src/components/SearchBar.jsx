@@ -40,18 +40,19 @@ function SearchBar() {
 
   return (
 
-    <div className="search-bar w-1/2 border-blue-700 rounded-lg border-2 px-4 py-1">
+    <div className="search-bar w-1/2 border-blue-700  rounded-lg border-2 px-4 py-1">
       <input
         placeholder="Search month..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         ref={searchRef}
+        className="text-blue-100"
       />
 
       {search.length > 0 ? (
-    <SearchResults filteredSymbol={filteredSymbol} search={search} />)
+    <SearchResults filteredSymbol={filteredSymbol} />)
    : (
-        <p>No results found.</p>
+        <p className="text-blue-100">No results found.</p>
       )}
     </div>
   );
