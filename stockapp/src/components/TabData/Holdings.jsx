@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 export default function Holdings() {
   // Initial state for your stock holdings
   const [holdings, setHoldings] = useState([
-    { id: 1, ticker: 'AAPL', name: 'Apple Inc.', quantity: 15, avgPrice: 175.50, currentPrice: 210.25 },
-    { id: 2, ticker: 'RELIANCE', name: 'Reliance Industries', quantity: 10, avgPrice: 2800.00, currentPrice: 3100.50 },
-    { id: 3, ticker: 'TCS', name: 'Tata Consultancy Svcs', quantity: 20, avgPrice: 3800.00, currentPrice: 4200.00 }
+    { id: 1, ticker: 'AAPL', name: 'Apple Inc.', quantity: 15, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200.22 },
+    { id: 2, ticker: 'RELIANCE', name: 'Reliance Industries', quantity: 150, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200  },
+    { id: 3, ticker: 'TCS', name: 'Tata Consultancy Svcs',quantity: 100, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200 }
   ]);
 
   // Helper function to calculate total returns
-  const calculateReturn = (qty, avg, current) => {
-    const totalCost = qty * avg;
-    const marketValue = qty * current;
+  const calculateReturn = (quantity, avgCost, currentValue) => {
+    const totalCost = quantity * avgCost;
+    const marketValue = quantity * currentValue;
     const pl = marketValue - totalCost;
     const plPercent = (pl / totalCost) * 100;
     return {
@@ -27,10 +27,13 @@ export default function Holdings() {
         <thead>
           <tr>
             <th className='bg-red-50'>Symbol</th>
+            <th>Symbol</th>
             <th>Company</th>
             <th>Qty</th>
             <th>Avg Cost</th>
-            <th>Current</th>
+            <th>LTP</th>
+            <th>Invested</th>
+            <th>Current Value</th>
             <th>Market Value</th>
             <th>P&amp;L ($/₹)</th>
           </tr>
@@ -45,8 +48,10 @@ export default function Holdings() {
                 <td><strong>{stock.ticker}</strong></td>
                 <td>{stock.name}</td>
                 <td>{stock.quantity}</td>
-                <td>{stock.avgPrice}</td>
-                <td>{stock.currentPrice}</td>
+                <td>{stock.avgCost}</td>
+                <td>{stock.LTP}</td>
+                 <td>{stock.invested}</td>
+                <td>{stock.currentValue}</td>
                 <td>{(stock.quantity * stock.currentPrice).toFixed(2)}</td>
                 <td style={{ color: isProfit ? 'green' : 'red' }}>
                   {pl} ({plPercent}%)
