@@ -167,6 +167,7 @@ function WatchList() {
                                 <th>Volume</th>
                                 <th>Market Cap</th>
                                 <th>Timestamp</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -208,6 +209,7 @@ function WatchList() {
                                 <th>Volume</th>
                                 <th>Market Cap</th>
                                 <th>Timestamp</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

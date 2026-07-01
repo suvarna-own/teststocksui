@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Holdings() {
   // Initial state for your stock holdings
-  const [holdings, setHoldings] = useState([
-    { id: 1, ticker: 'AAPL', name: 'Apple Inc.', quantity: 15, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200.22 },
-    { id: 2, ticker: 'RELIANCE', name: 'Reliance Industries', quantity: 150, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200  },
-    { id: 3, ticker: 'TCS', name: 'Tata Consultancy Svcs',quantity: 100, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200 }
-  ]);
+  // const [holdings, setHoldings] = useState([
+  //   { id: 1, ticker: 'AAPL', name: 'Apple Inc.', quantity: 15, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200.22 },
+  //   { id: 2, ticker: 'RELIANCE', name: 'Reliance Industries', quantity: 150, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200  },
+  //   { id: 3, ticker: 'TCS', name: 'Tata Consultancy Svcs',quantity: 100, avgCost: 175.50,LTP:201.23,invested:4000, currentValue: 210.25,pl:200 }
+  // ]);
+  const [holdStocks, setHoldStocks] = useState([]);
+
+  useEffect(() => {
+    HoldStocks();
+  }, []);
+
+  const HoldStocks = async () => {
+        try {
+            // Replace with your stock API
+            const res = await axios.get("http://localhost:5000/buy");
+            console.log(res.data);
+            setHoldStocks(res.data);
+        } catch (err) {
+            console.error("Error loading stocks:", err);
+        }
+    };
 
   // Helper function to calculate total returns
   const calculateReturn = (quantity, avgCost, currentValue) => {
@@ -26,33 +44,33 @@ export default function Holdings() {
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th className='bg-red-50'>Symbol</th>
+           
             <th>Symbol</th>
             <th>Company</th>
-            <th>Qty</th>
-            <th>Avg Cost</th>
+            <th>Price</th>
+            <th>Change</th>
             <th>LTP</th>
-            <th>Invested</th>
-            <th>Current Value</th>
-            <th>Market Value</th>
-            <th>P&amp;L ($/₹)</th>
+            <th>Change %</th>
+            <th>Volume</th>
+            <th>Market Cap</th>
+            <th>PL ($/₹)</th>
           </tr>
         </thead>
         <tbody>
-          {holdings.map(stock => {
-            const { pl, plPercent } = calculateReturn(stock.quantity, stock.avgPrice, stock.currentPrice);
+          {holdStocks.map(stock => {
+            const { pl, plPercent } = calculateReturn(stock.qty, stock.avgCost, stock.currentValue);
             const isProfit = pl >= 0;
 
             return (
               <tr key={stock.id}>
-                <td><strong>{stock.ticker}</strong></td>
+                <td><strong>{stock.symbol}</strong></td>
                 <td>{stock.name}</td>
-                <td>{stock.quantity}</td>
-                <td>{stock.avgCost}</td>
-                <td>{stock.LTP}</td>
-                 <td>{stock.invested}</td>
-                <td>{stock.currentValue}</td>
-                <td>{(stock.quantity * stock.currentPrice).toFixed(2)}</td>
+                <td>{stock.price}</td>
+                <td>{stock.change}</td>
+                <td>{stock.change_percent}</td>
+                 <td>{stock.volume}</td>
+                <td>{stock.market_cap}</td>
+                <td>{stock.qty}</td>
                 <td style={{ color: isProfit ? 'green' : 'red' }}>
                   {pl} ({plPercent}%)
                 </td>

@@ -5,9 +5,13 @@ import { useTheme } from "../context/ThemeContext";
 function Buy() {
 
     const { theme } = useTheme();
+    const [qty, setQty] = useState({});
+    const [sell_qty, setSellQty] = useState({});
     const [stocks, setStocks] = useState([]);
     const [buyList, setBuyList] = useState([]);
     const [sellList, setSellList] = useState([]);
+
+
 
     // Load stock data
     useEffect(() => {
@@ -34,13 +38,15 @@ function Buy() {
     const handleBuy = async (stock) => {
         debugger
         try {
-            console.log("Sending buy button:", stock);
+            const selectedQty = Number(qty[stock.symbol] || 1);
+            console.log("Sending buy button:", stock, "qty:", selectedQty);
 
             const response = await axios.post(
                 "http://localhost:5000/buy",
                 {
                     symbol: stock.symbol,
                     name: stock.name,
+                    qty: selectedQty,
                     price: stock.price,
                     change: stock.change,
                     change_percent: stock.change_percent,
@@ -48,6 +54,15 @@ function Buy() {
                     market_cap: stock.market_cap,
                 }
             );
+            const payload = {
+                symbol: stock.symbol,
+                company: stock.company,
+                price: stock.price,
+                qty: selectedQty
+            };
+
+            console.log(payload);
+            console.log("Sending buy button:", stock);
 
             alert(response.data.message);
 
@@ -94,7 +109,7 @@ function Buy() {
         }
     };
     useEffect(() => {
-        console.log("Updated buyList:", buyList);
+        console.log("Updated sellList:", sellList);
     }, [sellList]);
 
 
@@ -102,22 +117,26 @@ function Buy() {
     const handleSell = async (item) => {
         debugger
         try {
-            console.log("Sending sell btn:", item);
+            const selectedSellQty = Number(sell_qty[item.symbol] || 1);
+            console.log("Sending sell button:", item, "qty:", selectedSellQty);
 
             const response = await axios.post(
                 "http://localhost:5000/sell",
                 {
                     symbol: item.symbol,
                     name: item.name,
+                    qty: item.qty,
                     price: item.price,
                     change: item.change,
                     change_percent: item.change_percent,
                     volume: item.volume,
                     market_cap: item.market_cap,
+                    sell_qty: selectedSellQty,
                 }
             );
 
             alert(response.data.message);
+            loadBuyList();
 
         } catch (err) {
             console.error("Sell Error:", err);
@@ -145,6 +164,7 @@ function Buy() {
                             <th>Change %</th>
                             <th>Volume</th>
                             <th>Market Cap</th>
+                            <th>Quantity</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -161,7 +181,19 @@ function Buy() {
                                     <td>{stock.change_percent}</td>
                                     <td>{stock.volume}</td>
                                     <td>{stock.market_cap}</td>
-
+                                    <td>
+                                        <input className="form-control"
+                                            type="number"
+                                            min="1"
+                                            value={qty[stock.symbol] || ""}
+                                            onChange={(e) =>
+                                                setQty({
+                                                    ...qty,
+                                                    [stock.symbol]: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </td>
                                     <td>
                                         <button onClick={() => handleBuy(stock)} className="btn btn-primary">
                                             Buy
@@ -182,11 +214,14 @@ function Buy() {
                             <th>ID</th>
                             <th>Symbol</th>
                             <th>Name</th>
+                            <th>Quantity</th>
                             <th>Price</th>
                             <th>Change</th>
                             <th>Change %</th>
                             <th>Volume</th>
                             <th>Market Cap</th>
+                            <th>Sell Quantity</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -198,11 +233,26 @@ function Buy() {
                                     <td>{item.id}</td>
                                     <td>{item.symbol}</td>
                                     <td>{item.name}</td>
+                                    <td>{item.qty}</td>
                                     <td>{item.price}</td>
                                     <td>{item.change}</td>
                                     <td>{item.change_percent}</td>
                                     <td>{item.volume}</td>
                                     <td>{item.market_cap}</td>
+                                    <td>
+                                        <input className="form-control"
+                                            type="number"
+                                            min="1"
+                                            value={sell_qty[item.symbol] || ""}
+                                            onChange={(e) =>
+                                                setSellQty({
+                                                    ...sell_qty,
+                                                    [item.symbol]: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </td>
+
                                     <td>
                                         <button onClick={() => handleSell(item)} className="btn btn-primary">
                                             Sell
