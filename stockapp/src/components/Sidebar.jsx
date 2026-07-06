@@ -43,14 +43,14 @@ const Sidebar = () => {
           </NavLink>
         </CNavItem>
 
-        <CNavItem>
+        {/* <CNavItem>
           <NavLink
             to="/dashboard/basket"
             className="nav-link"
           >
             Basket
           </NavLink>
-        </CNavItem>
+        </CNavItem> */}
         <CNavItem>
           <NavLink
             to="/dashboard/about"

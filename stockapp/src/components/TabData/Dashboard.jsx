@@ -1,9 +1,9 @@
 import StockChart from "../StockChart"
 import React from "react"
-import StockChartLight from "../StockChartLight"
-import StockDashboard from "./StockDashboard"
+// import StockChartLight from "../StockChartLight"
+// import StockDashboard from "./StockDashboard"
 import CandleChart from "../CandleChart"
-import DbTest from "../DbTest"
+// import DbTest from "../DbTest"
 export default function Dashboard() {
     return (
         <>
@@ -13,11 +13,11 @@ export default function Dashboard() {
             <StockChart />
 
             
-            <DbTest></DbTest>
+            {/* <DbTest></DbTest> */}
             <CandleChart/>
-            <StockDashboard></StockDashboard>
+            {/* <StockDashboard></StockDashboard> */}
             
-            <StockChartLight></StockChartLight>
+            {/* <StockChartLight></StockChartLight> */}
            
             </>
             

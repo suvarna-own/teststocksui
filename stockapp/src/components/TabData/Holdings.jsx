@@ -18,25 +18,13 @@ export default function Holdings() {
   const HoldStocks = async () => {
         try {
             // Replace with your stock API
-            const res = await axios.get("http://localhost:5000/buy");
+            const res = await axios.get("http://localhost:5000/sell");
             console.log(res.data);
             setHoldStocks(res.data);
         } catch (err) {
             console.error("Error loading stocks:", err);
         }
     };
-
-  // Helper function to calculate total returns
-  const calculateReturn = (quantity, avgCost, currentValue) => {
-    const totalCost = quantity * avgCost;
-    const marketValue = quantity * currentValue;
-    const pl = marketValue - totalCost;
-    const plPercent = (pl / totalCost) * 100;
-    return {
-      pl: pl.toFixed(2),
-      plPercent: plPercent.toFixed(2)
-    };
-  };
 
   return (
     <div className='py-2'>
@@ -46,33 +34,34 @@ export default function Holdings() {
           <tr>
            
             <th>Symbol</th>
-            <th>Company</th>
-            <th>Price</th>
-            <th>Change</th>
+            <th>Name</th>
+            <th>Quantity</th>
             <th>LTP</th>
+            <th>Change</th>
             <th>Change %</th>
             <th>Volume</th>
             <th>Market Cap</th>
-            <th>PL ($/₹)</th>
+            <th>PL (₹)</th>
           </tr>
         </thead>
         <tbody>
           {holdStocks.map(stock => {
-            const { pl, plPercent } = calculateReturn(stock.qty, stock.avgCost, stock.currentValue);
-            const isProfit = pl >= 0;
+            const pl = (stock.change) * (stock.qty - stock.sell_qty);
+            const isProfit = pl > 0;
+            const avail_qty = stock.qty - stock.sell_qty;
 
             return (
               <tr key={stock.id}>
                 <td><strong>{stock.symbol}</strong></td>
                 <td>{stock.name}</td>
+                <td>{avail_qty}</td>
                 <td>{stock.price}</td>
                 <td>{stock.change}</td>
                 <td>{stock.change_percent}</td>
                  <td>{stock.volume}</td>
                 <td>{stock.market_cap}</td>
-                <td>{stock.qty}</td>
                 <td style={{ color: isProfit ? 'green' : 'red' }}>
-                  {pl} ({plPercent}%)
+                  {pl}
                 </td>
               </tr>
             );

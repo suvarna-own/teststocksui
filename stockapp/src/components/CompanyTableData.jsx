@@ -124,8 +124,8 @@ function CompanyTableData() {
       <main className="company-data">
         <header className="stock-header">
           <div>
-            <h1>Company Wise Stock Data</h1>
-            <p>Streaming data from <code>http://localhost:8000/api/companies</code></p>
+            <h2>Company Wise Stock Data</h2>
+            {/* <p>Streaming data from <code>http://localhost:8000/api/companies</code></p> */}
           </div>
 
           <div className="status-row">

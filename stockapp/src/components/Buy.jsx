@@ -23,7 +23,6 @@ function Buy() {
 
 
     const loadStocks = async () => {
-        debugger
         try {
             // Replace with your stock API
             const res = await axios.get("http://localhost:8000/api/stocks");
@@ -36,7 +35,6 @@ function Buy() {
 
     // Buy selected stock
     const handleBuy = async (stock) => {
-        debugger
         try {
             const selectedQty = Number(qty[stock.symbol] || 1);
             console.log("Sending buy button:", stock, "qty:", selectedQty);
@@ -79,7 +77,6 @@ function Buy() {
 
     // Load purchased stocks
     const loadBuyList = async () => {
-        debugger
         try {
             const res = await axios.get("http://localhost:5000/buy");
 
@@ -115,7 +112,6 @@ function Buy() {
 
     // Sell selected stock
     const handleSell = async (item) => {
-        debugger
         try {
             const selectedSellQty = Number(sell_qty[item.symbol] || 1);
             console.log("Sending sell button:", item, "qty:", selectedSellQty);

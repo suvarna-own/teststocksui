@@ -10,7 +10,7 @@ import Holdings from './components/TabData/Holdings';
 import SampleWatchList1 from './components/TabData/SampleWatchList1';
 import WatchList from './components/TabData/WatchList';
 import CompanyTableData from './components/CompanyTableData';
-import Basket from './components/Basket';
+// import Basket from './components/Basket';
 import Buy from './components/Buy';
 import Funds from './components/Funds';
 import About from './components/Header/About';
@@ -21,6 +21,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Navigate } from 'react-router-dom';
 import AddFundsForm from './components/Funds/AddFundsForm';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function Placeholder({ title }) {
@@ -32,9 +33,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
 
-        <Route path="/dashboard" element={isLoggedIn ? <MainContainer /> : <Navigate to="/login" />}>
+        <Route path="/dashboard" element={<ProtectedRoute><MainContainer /></ProtectedRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="company" element={<CompanyTableData />} />
           <Route path="buy" element={<Buy />} />
@@ -43,7 +44,7 @@ function App() {
           <Route path="positions" element={<Placeholder title="Positions" />} />
           <Route path="bids" element={<Placeholder title="Bids" />} />
           <Route path="funds" element={<Funds />} />
-          <Route path="basket" element={<Basket />} />
+          {/* <Route path="basket" element={<Basket />} /> */}
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>

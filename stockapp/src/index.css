@@ -105,7 +105,24 @@ body.light {
 }
 
 body.dark {
-    background: #121212;
+    background: #131010;
     color: white;
     transition: 0.3s;
 }
+.nav-underline .nav-link.active, .nav-underline .show>.nav-link{
+  --bs-nav-underline-link-active-color: #3ba540;
+}
+/* Keep old breakpoint for reference
+@media (max-width: 991.98px) {
+    .sidebar:not(.sidebar-end) {
+        display: block;
+    }
+}
+*/
+/* Make sidebar visible on screens 989px and below */
+@media (max-width: 989px) {
+  .sidebar {
+  --cui-sidebar-width: 7rem;
+  }
+  
+  }
