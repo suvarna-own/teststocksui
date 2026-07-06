@@ -17,7 +17,7 @@
 }
 .sidebar{
      --cui-sidebar-width:13rem;
-     height:100vh;
+     min-height:100vh;
      background: #5599f1;
 }
 .dropdown-item, .dropdown-item span{
@@ -126,3 +126,6 @@ body.dark {
   }
   
   }
+.login-container{
+  height:95vh;
+}

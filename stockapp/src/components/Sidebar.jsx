@@ -13,8 +13,8 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   const [unfoldable, setUnfoldable] = useState(true)
   return (
-    <CSidebar className="border-end h-dvh">
-      <CSidebarNav className="h-dvh">
+    <CSidebar className="border-end">
+      <CSidebarNav className="">
         <CNavItem className="text-600">
           <NavLink
             to="/dashboard"
