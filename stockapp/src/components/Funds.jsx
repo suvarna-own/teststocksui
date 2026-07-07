@@ -1,12 +1,23 @@
 import React from "react"
-import { useState } from "react";
 import AddFundsForm from "./Funds/AddFundsForm";
 import WithDrawForm from "./Funds/WithDrawForm";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
 export default function Funds() {
     const [showFund, setShowFund] = useState(false);
     const [showWithDraw, setShowWithDraw] = useState(false);
+    const [balance, setBalance] = useState(0);
+
+    useEffect(() => {
+            loadBalance();
+        }, []);
+
+    const loadBalance = async () => {
+        const res = await axios.get("http://localhost:5000/balance");
+        setBalance(res.data.balance);
+    };    
 
     return (
         <>
@@ -15,7 +26,7 @@ export default function Funds() {
                     Total Balance
                 </h3>
                 <p className="mt-2 text-4xl font-extrabold text-gray-900">
-                    ₹5,240.00
+                   {balance}
                 </p>
                 <div className="btn-wrap">
                     <button className="btn btn-primary mx-2" onClick={() => setShowFund(!showFund)}> {showFund ? "Hide" : "Show"} + Add funds</button>

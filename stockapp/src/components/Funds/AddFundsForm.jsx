@@ -19,7 +19,7 @@ export default function AddFundsForm() {
     }, []);
 
     const loadBalance = async () => {
-        const res = await axios.get("/balance");
+        const res = await axios.get("http://localhost:5000/balance");
 
         setId(res.data.id);
         setBalance(res.data.balance);
@@ -29,7 +29,7 @@ export default function AddFundsForm() {
     e.preventDefault();
 
     try {
-        const res = await axios.post("/add-funds", {
+        const res = await axios.post("http://localhost:5000/add-funds", {
             amount: Number(amount)
         });
 
@@ -61,7 +61,7 @@ export default function AddFundsForm() {
                                 <table border="1" cellPadding="10">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th width="100">ID</th>
                                             <th>Balance</th>
                                         </tr>
                                     </thead>
