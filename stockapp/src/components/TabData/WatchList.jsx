@@ -51,12 +51,12 @@ function WatchList() {
             );
             const payload = {
                 symbol: stock.symbol,
-                    name: stock.name,
-                    price: stock.price,
-                    change: stock.change,
-                    change_percent: stock.change_percent,
-                    volume: stock.volume,
-                    market_cap: stock.market_cap,
+                name: stock.name,
+                price: stock.price,
+                change: stock.change,
+                change_percent: stock.change_percent,
+                volume: stock.volume,
+                market_cap: stock.market_cap,
             };
 
             console.log(payload);
@@ -66,6 +66,11 @@ function WatchList() {
 
             loadWatchList();
         } catch (err) {
+            if (err.response?.status === 409) {
+                alert("This stock is already in your watchlist.");
+            } else {
+                alert("Something went wrong.");
+            }
             console.error("Watchlist Error:", err);
 
         }
@@ -73,13 +78,12 @@ function WatchList() {
 
     // Load watched stocks
     const loadWatchList = async () => {
-      
+
         try {
             const res = await axios.get("http://localhost:5000/watchlist");
 
             console.log("Watchlist Response:", res.data);
             console.log(Array.isArray(res.data));
-
             setWatchList(res.data);
         } catch (err) {
             console.error(err);
@@ -89,7 +93,7 @@ function WatchList() {
         console.log("Updated watchList:", watchList);
     }, [watchList]);
 
- return (
+    return (
         <div >
             <section className="table-wrap">
                 <h2>Stock List</h2>
@@ -122,7 +126,7 @@ function WatchList() {
                                     <td>{stock.market_cap}</td>
                                     <td>
                                         <button onClick={() => handleWatchlist(stock)} className="btn btn-primary">
-                                           + WatchList
+                                            + WatchList
                                         </button>
                                     </td>
                                 </tr>
