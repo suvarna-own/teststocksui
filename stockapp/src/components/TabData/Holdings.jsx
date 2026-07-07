@@ -16,15 +16,18 @@ export default function Holdings() {
   }, []);
 
   const HoldStocks = async () => {
-        try {
-            // Replace with your stock API
-            const res = await axios.get("http://localhost:5000/sell");
-            console.log(res.data);
-            setHoldStocks(res.data);
-        } catch (err) {
-            console.error("Error loading stocks:", err);
-        }
-    };
+    try {
+      const res = await axios.get("http://localhost:5000/sell");
+      // console.log(res.data);
+      setHoldStocks(res.data);
+    } catch (err) {
+      if (err.response?.status === 409) {
+        alert("This stock is already in your watchlist.");
+      } else {
+        alert("Something went wrong.");
+      }
+    }
+  };
 
   return (
     <div className='py-2'>
@@ -32,7 +35,6 @@ export default function Holdings() {
       <table className='table table-striped'>
         <thead>
           <tr>
-           
             <th>Symbol</th>
             <th>Name</th>
             <th>Quantity</th>
@@ -58,7 +60,7 @@ export default function Holdings() {
                 <td>{stock.price}</td>
                 <td>{stock.change}</td>
                 <td>{stock.change_percent}</td>
-                 <td>{stock.volume}</td>
+                <td>{stock.volume}</td>
                 <td>{stock.market_cap}</td>
                 <td style={{ color: isProfit ? 'green' : 'red' }}>
                   {pl}
